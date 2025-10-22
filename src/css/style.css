@@ -1,0 +1,158 @@
+body {
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Estilo do container principal (agora <main class="container">) */
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+}
+
+/* Área de Adição de Tarefas (<section class="add-task-container">) */
+.add-task-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+#task-input {
+    flex-grow: 1;
+    /* Faz o input ocupar o espaço restante */
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 1em;
+}
+
+#task-input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+#add-task-btn {
+    padding: 12px 20px;
+    background-color: #007bff;
+    /* Cor primária */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#add-task-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Área de Filtros (<section class="filters-container">) */
+.filters-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.filters-container button {
+    background: none;
+    border: none;
+    color: #555;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 4px;
+    transition: color 0.3s, background-color 0.3s;
+}
+
+.filters-container button:hover {
+    color: #007bff;
+    font-weight: bold;
+    border-bottom: 2px solid #007bff;
+}
+
+/* Lista de Tarefas (<ul id="task-list">) */
+#task-list {
+    list-style: none;
+}
+
+#task-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 1.1em;
+}
+
+#task-list li:last-child {
+    border-bottom: none;
+    /* Remove a linha de baixo da última tarefa */
+}
+
+.task-text {
+    flex-grow: 1;
+    margin-right: 15px;
+    word-wrap: break-word;
+    /* Garante que textos longos quebrem */
+}
+
+/* Tarefa Concluída (Classe será adicionada pelo JS) */
+.completed .task-text {
+    text-decoration: line-through;
+    color: #888;
+}
+
+/* Container de Ações (Botões) */
+.actions-container button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 1.2em;
+    opacity: 0.7;
+    transition: opacity 0.2s, color 0.2s;
+}
+
+.actions-container button:hover {
+    opacity: 1;
+}
+
+/* Cores específicas para botões de ação */
+.edit-btn {
+    color: #ffc107; /* Amarelo para editar */
+}
+
+.delete-btn {
+    color: #dc3545; /* Vermelho para excluir */
+}
+
+.complete-btn {
+    color: #28a745; /* Verde para concluir */
+}
+
+/* Estilo para o campo de edição que será criado no JS */
+#task-list li input[type="text"] {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    margin-right: 10px;
+}
+

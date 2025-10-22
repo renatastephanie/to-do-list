@@ -1,0 +1,10 @@
+/* Responsividade básica para telas menores */
+@media (max-width: 480px){
+    .add-task-container {
+        flex-direction: column;
+    }
+
+    #add-task-btn {
+        width: 100%;
+    }
+}
