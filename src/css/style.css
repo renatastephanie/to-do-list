@@ -1,30 +1,92 @@
+/* --- 1. VARIÁVEIS DE COR E TEMA --- */
+
+/* Modo Claro (Padrão) */
+:root {
+    --bg-color: #d3d3d3; /* Fundo da página mais escuro */
+    --container-color: #FFFFFF; /* Container branco, mais claro */
+    --text-color: #1C1B0D;
+    --primary-color: #36724A;
+    --primary-hover-color: #285d3a;
+    --success-color: #26B11D;
+    --border-color: #E0E0E0;
+    --button-text-color: #FFFFFF;
+    --secondary-text-color: #555;
+    --edit-color: #ffc107;
+    --delete-color: #dc3545;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Modo Escuro */
+[data-theme='dark'] {
+    --bg-color: #000000c8;
+    --container-color: #19290f;
+    --text-color: #FFFFFF;
+    --primary-color: #36724A;
+    --primary-hover-color: #72b187;
+    --success-color: #26B11D;
+    --border-color: #283628;
+    --button-text-color: #FFFFFF;
+    --secondary-text-color: #D1D5DB;
+    --edit-color: #ffc107;
+    --delete-color: #dc3545;
+    --shadow-color: rgba(255, 255, 255, 0.05);
+}
+
+/* --- 2. ESTILOS GERAIS --- */
+
 body {
-    background-color: #f4f4f9;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     padding: 20px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-/* Estilo do container principal (agora <main class="container">) */
 .container {
-    background-color: #ffffff;
+    background-color: var(--container-color);
     padding: 30px;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 15px var(--shadow-color);
     width: 100%;
     max-width: 500px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
 }
 
 h1 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 25px;
+    color: var(--text-color);
     font-size: 1.8em;
 }
 
-/* Área de Adição de Tarefas (<section class="add-task-container">) */
+/* --- 3. BOTÃO DE TEMA --- */
+
+#theme-toggle-btn {
+    background: none;
+    border: 2px solid var(--border-color);
+    color: var(--text-color);
+    padding: 8px 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+#theme-toggle-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--button-text-color);
+}
+
+/* --- 4. ÁREA DE ADIÇÃO DE TAREFAS --- */
+
 .add-task-container {
     display: flex;
     gap: 10px;
@@ -33,23 +95,24 @@ h1 {
 
 #task-input {
     flex-grow: 1;
-    /* Faz o input ocupar o espaço restante */
     padding: 12px;
-    border: 2px solid #ddd;
+    border: 2px solid var(--border-color);
     border-radius: 6px;
     font-size: 1em;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: border-color 0.3s;
 }
 
 #task-input:focus {
     outline: none;
-    border-color: #007bff;
+    border-color: var(--primary-color);
 }
 
 #add-task-btn {
     padding: 12px 20px;
-    background-color: #007bff;
-    /* Cor primária */
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--button-text-color);
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -57,36 +120,43 @@ h1 {
 }
 
 #add-task-btn:hover {
-    background-color: #0056b3;
+    background-color: var(--primary-hover-color);
 }
 
-/* Área de Filtros (<section class="filters-container">) */
+/* --- 5. FILTROS --- */
+
 .filters-container {
     display: flex;
     justify-content: space-around;
     margin-bottom: 20px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-color);
     padding-bottom: 10px;
 }
 
 .filters-container button {
     background: none;
     border: none;
-    color: #555;
+    color: var(--secondary-text-color);
     padding: 8px 15px;
     cursor: pointer;
     font-size: 1em;
     border-radius: 4px;
-    transition: color 0.3s, background-color 0.3s;
+    transition: color 0.3s, border-bottom 0.3s;
+    border-bottom: 2px solid transparent;
 }
 
 .filters-container button:hover {
-    color: #007bff;
-    font-weight: bold;
-    border-bottom: 2px solid #007bff;
+    color: var(--primary-color);
 }
 
-/* Lista de Tarefas (<ul id="task-list">) */
+.filters-container button.active {
+    color: var(--primary-color);
+    font-weight: bold;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+/* --- 6. LISTA DE TAREFAS --- */
+
 #task-list {
     list-style: none;
 }
@@ -96,36 +166,34 @@ h1 {
     justify-content: space-between;
     align-items: center;
     padding: 15px 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-color);
     font-size: 1.1em;
 }
 
 #task-list li:last-child {
     border-bottom: none;
-    /* Remove a linha de baixo da última tarefa */
 }
 
 .task-text {
     flex-grow: 1;
     margin-right: 15px;
     word-wrap: break-word;
-    /* Garante que textos longos quebrem */
 }
 
-/* Tarefa Concluída (Classe será adicionada pelo JS) */
 .completed .task-text {
     text-decoration: line-through;
-    color: #888;
+    color: var(--secondary-text-color);
 }
 
-/* Container de Ações (Botões) */
+/* --- 7. BOTÕES DE AÇÃO --- */
+
 .actions-container button {
     background: none;
     border: none;
     cursor: pointer;
     margin-left: 10px;
     font-size: 1.2em;
-    opacity: 0.7;
+    opacity: 0.8;
     transition: opacity 0.2s, color 0.2s;
 }
 
@@ -133,26 +201,35 @@ h1 {
     opacity: 1;
 }
 
-/* Cores específicas para botões de ação */
 .edit-btn {
-    color: #ffc107; /* Amarelo para editar */
+    color: var(--edit-color);
 }
 
 .delete-btn {
-    color: #dc3545; /* Vermelho para excluir */
+    color: var(--delete-color);
 }
 
 .complete-btn {
-    color: #28a745; /* Verde para concluir */
+    color: var(--success-color);
 }
 
-/* Estilo para o campo de edição que será criado no JS */
-#task-list li input[type="text"] {
+/* --- 8. EDIÇÃO DE TAREFA --- */
+
+.edit-input {
     flex-grow: 1;
     padding: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
     font-size: 1em;
     margin-right: 10px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
 }
 
+.save-edit-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    color: var(--success-color);
+}
