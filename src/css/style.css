@@ -233,3 +233,25 @@ h1 {
     font-size: 1.2em;
     color: var(--success-color);
 }
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    text-align: center;
+    font-size: 0.9em;
+    color: var(--secondary-text-color);
+}
+
+footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: var(--primary-hover-color);
+    text-decoration: underline;
+}
